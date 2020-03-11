@@ -31,7 +31,7 @@ timeIni <- Sys.time()
 #install.packages('caret')
 #install.packages('ggplot2')
 #install.packages('readxl')
-#install.paackages('xlsx')
+#install.packages('xlsx')
 #install.packages('ADGofTest')
 #install.packages('nortest')
 #install.packages('MASS')
@@ -66,9 +66,9 @@ library(moments)
 # -------------------------
 # Invocar funciones propias
 # -------------------------
-source('R:\\Funciones\\descDataSet.R')
-source('R:\\Funciones\\descGrafVars.R')
-source('R:\\Funciones\\enviarNotificacion.R')
+source('R:\\Common\\descDataSet.R')
+source('R:\\Common\\descGrafVars.R')
+source('R:\\Common\\enviarNotificacion.R')
 
 
 # -------------------
@@ -85,8 +85,8 @@ semilla              <-  777677 # Para generación de aleatoriedad
 # TODO: Mejor la asignación de los nombres y rutas a utilizar
 archivo_entrada      <-  "R:\\datasets\\producto_premium_201704.txt"
 nombre_archivo       <-  str_split(programa,"\\.")
-archivo_salida       <-  str_c("R:\\work\\SALIDA", nombre_archivo[[1]][1])
-archivo_auxiliar     <-  str_c("R:\\work\\Auxiliar", nombre_archivo[[1]][1])
+archivo_salida       <-  str_c("R:\\Work\\Salida", nombre_archivo[[1]][1])
+archivo_auxiliar     <-  str_c("R:\\Work\\Auxiliar", nombre_archivo[[1]][1])
 separador            <-  "\t" #" "  ";"  "," 
 decimal              <-  "."             
 campo_id             <-  "numero_de_cliente" #(identificador único de cada fila)
@@ -178,14 +178,14 @@ dfDescDS <- descDataSet(dfSource)
 
 # Escribe en un excel el data frame de descripción del data set de entrada
 # TODO: Hacer validación de que existe la ruta y si no existe crearla para que no dé error
-write.xlsx(x = dfDescDS, file = "R:\\work\\descDfSource.xlsx",
+write.xlsx(x = dfDescDS, file = "R:\\Work\\descDfSource.xlsx",
            sheetName = "Descripcion", row.names = FALSE)
 
 # --------------------------------
 # Descripción gráfica de variables
 # --------------------------------
 # Selecciona las variables del dataset que desea explorar graficamente
-dfSourceVars <- dfSource[,1:4]
+dfSourceVars <- dfSource[,c(2,4,28)]
 # Llama a la función personalizada que realiza la descripción gráfica
 descGrafVars(dfSourceVars,cantFil = 2, maximizar = TRUE)
 
